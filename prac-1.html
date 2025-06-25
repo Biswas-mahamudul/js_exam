@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(213, 193, 233);
+        }
+
+        fieldset {
+            width: 500px;
+            margin: auto;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form id="form">
+            <fieldset>
+                ID: <br>
+                <input type="text" name="mid" placeholder="enter your id"> <br><br>
+                NAME: <br>
+                <input type="text" name="mname" placeholder="enter your id"> <br><br>
+                ADDRESS: <br>
+                <textarea name="fAddress" id="" placeholder="Enter your address"></textarea> <br><br>
+                ROUND: <br>
+                <select name="fRound">
+                    <option>65</option>
+                    <option>64</option>
+                    <option>63</option>
+                </select>
+                <br><br>
+                GENDER: <br>
+                <input name="fG" type="radio" value="Male">Male
+                <input name="fG" type="radio" value="Female">Female
+                <input name="fG" type="radio" value="Others">Others
+                <br><br>
+                EDUCATION: <br>
+                <input name="fEdu" type="checkbox" value="SSC">Ssc
+                <input name="fEdu" type="checkbox" value="HSC">Hsc
+                <input name="fEdu" type="checkbox" value="Hons">Hons <br><br>
+
+
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+    </div>
+    <script>
+        class FormValues {
+            constructor(formData) {
+                for (let [name, value] of formData) {
+                    this[name] = formData.getAll(name).join(',');
+                }
+            }
+
+            getData() {
+                var show = "ID: " + this.mid + "<br>";
+                show += "Name: " + this.mname + "<br>";
+                show += "Address: " + this.fAddress + "<br>";
+                show += "Round: " + this.fRound + "<br>";
+                show += "Gender: " + this.fG + "<br>";
+                show += "Education: " + this.fEdu + "<br>";
+                show += "Remark: " + this.fRe + "<br>";
+
+                var n = window.open('', '', 'width=400,height=400');
+                n.document.write(show);
+            }
+
+        }
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+
+            var fm = document.querySelector('#form');
+            var form_data = new FormData(fm);
+
+            var f = new FormValues(form_data);
+            f.getData();
+        }
+    </script>
+</body>
+
+</html>
